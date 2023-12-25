@@ -5,7 +5,7 @@ const colors = ["4E1859","E797F0","BD4791","171C31","3575AB","A2BCE5","204134","
 
 for (let i = 1; i <= layerCount; i++) {
     const baseImage = new Image();
-    baseImage.src = `../images/brioche${i}.png`;
+    baseImage.src = `images/brioche${i}.png`;
     baseImages.push(baseImage);
 }
 
