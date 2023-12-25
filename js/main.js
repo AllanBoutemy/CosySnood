@@ -1,5 +1,5 @@
 const baseImages = [];
-const layerCount = 3;
+const layerCount = 3;let colorStrength = 0.5;
 
 const colors = ["4E1859","E797F0","BD4791","171C31","3575AB","A2BCE5","204134","93B035","93B035","FF8142","ECAE2F","F7EF4B","881238","D2161A","E3355F","EAA3B9","D2AB8B","EDE8D8"];
 
@@ -40,7 +40,7 @@ function applyColorToLayer(image, color,imagebase) {
         if (data[i + 3] !== 0) {
             const lum = 0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2];
             const alpha = data[i + 3] / 255;
-            const colorStrength = 0.2; // Ajustez cette valeur pour l'intensité
+             // Ajustez cette valeur pour l'intensité
 
             // Ajuster la couleur en préservant la luminosité
             data[i] = Math.round((1 - colorStrength) * data[i] + color.r * colorStrength);// Rouge
@@ -67,10 +67,74 @@ function changeColors(color1, color2, color3) {
     applyColorToLayer(echarpeCouche3, color3,baseImages[2]);
 }
 
-document.querySelector('.couleur-rouge').addEventListener('click', function () {
+/* document.querySelector('.couleur-rouge').addEventListener('click', function () {
     changeColors({ r: 156, g: 0, b: 0 }, { r: 0, g: 255, b: 0 }, { r: 0, g: 0, b: 255 });
 });
 
 document.querySelector('.couleur-bleu').addEventListener('click', function () {
     changeColors({ r: 0, g: 0, b: 255 }, { r: 0, g: 0, b: 255 }, { r: 0, g: 0, b: 255 });
+}); */
+
+
+// Gestionnaire d'événement de clic pour les couleurs de la couche 1
+document.querySelectorAll('.colorBox .colorList')[0].addEventListener('click', function (event) {
+    if (event.target.classList.contains('color')) {
+        // Obtenez la couleur au format hexadécimal (ex: #4E1859)
+        const colorElement = event.target;
+        const computedStyles = window.getComputedStyle(colorElement);
+        const colorHex = computedStyles.backgroundColor;
+        const colorObj = hexToRgb(colorHex);
+        // Appliquer la couleur à la couche 1
+        applyColorToLayer(document.getElementById('echarpeCouche1'), colorObj, baseImages[0]);
+    }
 });
+
+// Gestionnaire d'événement de clic pour les couleurs de la couche 2
+document.querySelectorAll('.colorBox .colorList')[1].addEventListener('click', function (event) {
+    if (event.target.classList.contains('color')) {
+        // Obtenez la couleur au format hexadécimal (ex: #4E1859)
+        const colorElement = event.target;
+        const computedStyles = window.getComputedStyle(colorElement);
+        const colorHex = computedStyles.backgroundColor;
+        const colorObj = hexToRgb(colorHex);
+        // Appliquer la couleur à la couche 1
+        applyColorToLayer(document.getElementById('echarpeCouche2'), colorObj, baseImages[1]);}
+});
+
+// Gestionnaire d'événement de clic pour les couleurs de la couche 3
+document.querySelectorAll('.colorBox .colorList')[2].addEventListener('click', function (event) {
+    // Code similaire pour la couche 3
+    if (event.target.classList.contains('color')) {
+        // Obtenez la couleur au format hexadécimal (ex: #4E1859)
+        const colorElement = event.target;
+        const computedStyles = window.getComputedStyle(colorElement);
+        const colorHex = computedStyles.backgroundColor;
+        const colorObj = hexToRgb(colorHex);
+        // Appliquer la couleur à la couche 1
+        applyColorToLayer(document.getElementById('echarpeCouche3'), colorObj, baseImages[2]);}
+});
+
+function hexToRgb(hex) {
+
+    const colorRgb = extractRgbValues(hex);
+
+    if (colorRgb) {
+        console.log(colorRgb); // Cela devrait afficher { r: 234, g: 163, b: 185 }
+    } else {
+        console.error("Format de couleur inattendu");
+    }
+
+
+
+    // Retourner un objet de couleur
+    return colorRgb;
+}
+
+function extractRgbValues(rgbString) {
+    const match = rgbString.match(/(\d+),\s*(\d+),\s*(\d+)/);
+    if (match) {
+        const [, r, g, b] = match;
+        return { r: parseInt(r), g: parseInt(g), b: parseInt(b) };
+    }
+    return null; // Retourne null si le format n'est pas celui attendu
+}
