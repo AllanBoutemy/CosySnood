@@ -19,13 +19,27 @@ function drawColorSquare(canvas, context, color) {
     imagetest.src = canvas.toDataURL();
 }
 
+function makeImageResponsive(canvas, imagebase) {
+    // Obtenez la largeur de l'écran
+    const screenWidth = window.innerWidth;
 
+    // Définissez la largeur du canvas en fonction de la largeur de l'écran
+    canvas.width = screenWidth < 768 ? screenWidth : imagebase.width;
+
+    // Calculez la hauteur du canvas en conservant le rapport hauteur/largeur de l'image d'origine
+    canvas.height = (canvas.width / imagebase.width) * imagebase.height;
+
+    // Dessinez l'image sur le canvas
+    const context = canvas.getContext('2d', { alpha: true });
+    context.drawImage(imagebase, 0, 0, canvas.width, canvas.height);
+}
 function applyColorToLayer(image, color,imagebase) {
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d', { alpha: true });
 
     canvas.width = imagebase.width;
-    canvas.height = imagebase.height;
+    canvas.height = imagebase.height; 
+   /*  makeImageResponsive(canvas, imagebase);*/
 
 
     // Dessinerl'image sur le canvas

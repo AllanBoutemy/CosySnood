@@ -9,7 +9,7 @@
     <meta name="description" content="  Make your CosySnood">
 
     <link rel="shortcut icon" href="favicon.ico">
-
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/html5-boilerplate.css">
     <link rel="stylesheet" href="css/main.css">
@@ -17,13 +17,17 @@
 
 <body class="Center_Content">
     <header>
-        <H1>Make your</H1> 
-        <figure><img src="images/logo.png" alt="logo cosysnood"></figure>
+        <H1 data-aos="fade-down">Make your</H1> 
+        <figure data-aos="flip-right" data-aos-easing="ease-in-sine">
+            <img src="images/logo.png" alt="logo cosysnood">
+        </figure>
        
     </header>
    
 
-    <main>
+    <main data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-back"
+    data-aos-delay="300"
+    data-aos-offset="0">
         <div class="echarpe-container">
             <img class="echarpe-layer" id="echarpeCouche1" src="images/brioche1.png" alt="Couche 1">
             <img class="echarpe-layer" id="echarpeCouche2" src="images/brioche2.png" alt="Couche 2">
@@ -118,6 +122,12 @@
   <!--  <img class="echarpe-layer" id="imageTest" src="" alt="Couche 3" style="TOP: 169PX;LEFT: 85%;margin: auto;width: 30px;height: 30px;POSITION: ABSOLUTE;Z-INDEX: -1;">
  -->
     <script src="js/main.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init();
+        });
+    </script>
 </body>
 
 </html>
