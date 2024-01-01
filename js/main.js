@@ -1,5 +1,5 @@
 const baseImages = [];
-const layerCount = 3;let colorStrength = 0.5;
+const layerCount = 3;let colorStrength = 0.7;
 
 const colors = ["4E1859","E797F0","BD4791","171C31","3575AB","A2BCE5","204134","93B035","93B035","FF8142","ECAE2F","F7EF4B","881238","D2161A","E3355F","EAA3B9","D2AB8B","EDE8D8"];
 
